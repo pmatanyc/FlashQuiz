@@ -10,6 +10,9 @@
 
 @interface ResultsViewController ()
 
+@property (strong, nonatomic) NSArray *highScores;
+@property (nonatomic) float highScore;
+
 @end
 
 @implementation ResultsViewController
@@ -17,10 +20,69 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"FlashQuiz";
+    self.title = @"Flash Quiz";
+    self.scoreResultLabel.text = [NSString stringWithFormat:@"%.f", self.score];
     
-    NSLog(@"Your score: %.f", self.score);
+    NSString *url = @"http://flashquiz-api.herokuapp.com/scores";
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
 }
+
+-(void)displayHighestScore{
+    
+    _highScore = 0.0;
+    
+    for (id score in _highScores) {
+        
+        if ([score floatValue] > _highScore)
+            _highScore = [score floatValue];
+        
+    }
+    
+    if (_score > _highScore)
+        self.infoLabel.text = @"You beat the top score!";
+    else if (_score == _highScore)
+        self.infoLabel.text = @"You matched the top score!";
+    else
+        self.highScoreLabel.text = [NSString stringWithFormat:@"%.f",_highScore];
+    
+}
+
+#pragma mark NSURLConnection Delegate Methods
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+
+    responseData = [[NSMutableData alloc] init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+
+    [responseData appendData:data];
+}
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse*)cachedResponse {
+    // Return nil to indicate not necessary to store a cached response for this connection
+    return nil;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
+    NSError *error;
+    NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
+    
+    _highScores = [jsonDictionary valueForKeyPath:@"value"];
+    
+    [self displayHighestScore];
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    
+    NSLog(@"%@",error.localizedDescription);
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

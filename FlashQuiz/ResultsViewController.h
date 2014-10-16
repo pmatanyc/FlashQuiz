@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ResultsViewController : UIViewController
+@interface ResultsViewController : UIViewController{
+    NSMutableData *responseData;
+}
+
+@property (strong, nonatomic) IBOutlet UILabel *scoreResultLabel;
 
 @property (nonatomic)float score;
+
+
+@property (strong, nonatomic) IBOutlet UILabel *infoLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *highScoreLabel;
+
 
 @end
