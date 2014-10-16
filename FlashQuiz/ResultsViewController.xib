@@ -9,45 +9,57 @@
                 <outlet property="highScoreLabel" destination="YSD-Qk-d3B" id="0CL-MQ-zLL"/>
                 <outlet property="infoLabel" destination="1QG-nk-Ura" id="WZt-aX-ZpB"/>
                 <outlet property="scoreResultLabel" destination="lXn-U0-pLa" id="LzE-eP-GUb"/>
+                <outlet property="tableView" destination="WUR-c1-EjJ" id="9v4-mO-6q6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="42" translatesAutoresizingMaskIntoConstraints="NO" id="lXn-U0-pLa">
-                    <rect key="frame" x="82" y="178" width="250" height="21"/>
+                    <rect key="frame" x="35" y="115" width="250" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Your Score:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="42" translatesAutoresizingMaskIntoConstraints="NO" id="jNb-6g-aLk">
-                    <rect key="frame" x="82" y="131" width="250" height="21"/>
+                    <rect key="frame" x="35" y="86" width="250" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="High Score:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="42" translatesAutoresizingMaskIntoConstraints="NO" id="1QG-nk-Ura">
-                    <rect key="frame" x="82" y="267" width="250" height="21"/>
+                    <rect key="frame" x="35" y="158" width="250" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="250" translatesAutoresizingMaskIntoConstraints="NO" id="YSD-Qk-d3B">
-                    <rect key="frame" x="82" y="316" width="250" height="21"/>
+                    <rect key="frame" x="35" y="187" width="250" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="WUR-c1-EjJ">
+                    <rect key="frame" x="57" y="216" width="207" height="300"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Q6u-zy-gLi"/>
+                        <outlet property="delegate" destination="-1" id="4ou-AW-PGx"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="1QG-nk-Ura" secondAttribute="centerX" id="4MB-RR-kN1"/>
+                <constraint firstAttribute="centerX" secondItem="WUR-c1-EjJ" secondAttribute="centerX" constant="10" id="AVM-4C-vRq"/>
                 <constraint firstAttribute="centerX" secondItem="lXn-U0-pLa" secondAttribute="centerX" id="Bir-uv-Ihp"/>
                 <constraint firstAttribute="centerX" secondItem="jNb-6g-aLk" secondAttribute="centerX" id="Far-SO-6wy"/>
                 <constraint firstAttribute="centerX" secondItem="YSD-Qk-d3B" secondAttribute="centerX" id="Mwy-dU-kd7"/>
+                <constraint firstAttribute="bottom" secondItem="WUR-c1-EjJ" secondAttribute="bottom" constant="10" id="nAz-hP-NOm"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

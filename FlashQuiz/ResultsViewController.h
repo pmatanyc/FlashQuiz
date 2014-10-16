@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ResultsViewController : UIViewController{
+@interface ResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
     NSMutableData *responseData;
 }
 
@@ -21,5 +22,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *highScoreLabel;
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

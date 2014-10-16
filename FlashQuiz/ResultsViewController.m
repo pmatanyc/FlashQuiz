@@ -20,12 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"Flash Quiz";
+    self.title = @"High Scores";
     self.scoreResultLabel.text = [NSString stringWithFormat:@"%.f", self.score];
     
-    NSString *url = @"http://flashquiz-api.herokuapp.com/scores";
+    NSString *urlString = @"http://flashquiz-api.herokuapp.com/scores";
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
@@ -76,6 +76,8 @@
     
     [self displayHighestScore];
     
+    [self.tableView reloadData];
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -83,6 +85,31 @@
     NSLog(@"%@",error.localizedDescription);
 }
 
+#pragma mark TableView Data Source Methods
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 10;
+    
+}
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    static NSString *cellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellIdentifier];
+        }
+
+    cell.textLabel.text = [NSString stringWithFormat:@"%d.", indexPath.row + 1];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", _highScores[indexPath.row]];
+    
+    return cell;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
