@@ -174,7 +174,7 @@
     
     _index++;
     _attempt = 1;
-    _answerTextField.text = nil;
+    self.answerTextField.text = nil;
 
 }
 @end
