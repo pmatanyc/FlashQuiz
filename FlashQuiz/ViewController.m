@@ -34,8 +34,8 @@
     
     [super viewWillAppear:NO];
     
-    _index = 0;
-    _attempt = 1;
+    self.index = 0;
+    self.attempt = 1;
     
     NSString *urlString = @"http://flashquiz-api.herokuapp.com/flash_cards";
     
@@ -87,11 +87,11 @@
     NSError *error;
     NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
     
-    _questions = [jsonDictionary valueForKeyPath:@"question"];
-    _answers = [jsonDictionary valueForKeyPath:@"answer"];
+    self.questions = [jsonDictionary valueForKeyPath:@"question"];
+    self.answers = [jsonDictionary valueForKeyPath:@"answer"];
     
     if (_questions.count !=0) {
-         _score = 100/_questions.count;
+         self.score = 100/_questions.count;
     }
     
     [self askQuestion];
@@ -124,12 +124,12 @@
         
         switch (_attempt) {
             case 1:
-                _score = _score * 1;
+                self.score = _score * 1;
                 break;
             case 2:
-                _score = _score * .75;
+                self.score = _score * .75;
             case 3:
-                _score = _score * .5;
+                self.score = _score * .5;
                 break;
                 
         }
@@ -142,12 +142,12 @@
         
         switch (_attempt) {
             case 1:{
-                _attempt++;
+                self.attempt++;
                 [self showErrorAlert];
             }
                 break;
             case 2:{
-                _attempt++;
+                self.attempt++;
                 [self showErrorAlert];
             }
                 break;
@@ -172,8 +172,8 @@
 
 -(void)clearBoard{
     
-    _index++;
-    _attempt = 1;
+    self.index++;
+    self.attempt = 1;
     self.answerTextField.text = nil;
 
 }

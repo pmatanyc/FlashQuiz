@@ -34,12 +34,12 @@
 
 -(void)displayHighestScore{
     
-    _highScore = 0.0;
+    self.highScore = 0.0;
     
     for (id score in _highScores) {
         
         if ([score floatValue] > _highScore)
-            _highScore = [score floatValue];
+            self.highScore = [score floatValue];
         
     }
     
@@ -73,7 +73,7 @@
     NSError *error;
     NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
     
-    _highScores = [jsonDictionary valueForKeyPath:@"value"];
+    self.highScores = [jsonDictionary valueForKeyPath:@"value"];
     
     [self displayHighestScore];
     
